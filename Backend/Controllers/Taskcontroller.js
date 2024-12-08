@@ -2,7 +2,7 @@
 const taskModel = require('../Model/TaskModel')
 
 
-exports.handlecreate = async (req, res) => {
+exports.create = async (req, res) => {
   try {
     const { title, userId } = req.body;
     if (!title || !userId) {
@@ -16,7 +16,7 @@ exports.handlecreate = async (req, res) => {
   }
 };
 
-  exports.handledelete = async (req, res) => {
+  exports.delete = async (req, res) => {
     try {
       const { taskId } = req.params;
       await taskModel.findByIdAndDelete(taskId);
@@ -26,7 +26,7 @@ exports.handlecreate = async (req, res) => {
     }
   };
 
-  exports.handleupdate = async (req, res) => {
+  exports.update = async (req, res) => {
     try {
       const { taskId } = req.params;
       const { listName, completed } = req.body;
@@ -50,7 +50,7 @@ exports.handlecreate = async (req, res) => {
     }
   };
 
-  exports.handleget = async (req, res) => {
+  exports.get = async (req, res) => {
     try {
       const { userId } = req.params;
       const tasks = await taskModel.find({ userId }).populate('userId', 'username');
